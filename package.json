@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "name": "@types/zspk-lib",
+    "license": "MIT",
+    "version": "1.0.0",
+    "types": "./index.d.ts",
+    "dependencies": {
+        "@sapui5/ts-types": "^1.120.7",
+        "@types/openui5": "^1.120.2"
+    },
+    "owners": [
+        {
+            "name": "afanasyevav",
+            "githubUsername": "Ryuzaki13"
+        }
+    ],
+    "scripts": {
+        "build": "tsup ./index.ts --format cjs --dts",
+        "start1": "pnpm add -D typescript",
+        "start2": "pnpm tsc --init",
+        "start3": "pnpm add -D tsup",
+        "start4": "pnpm add -D @changesets/cli",
+        "start5": "pnpm changeset init"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.27.1",
+        "tsup": "^8.0.2",
+        "typescript": "^5.3.3"
+    }
+}
