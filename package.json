@@ -16,6 +16,8 @@
     ],
     "scripts": {
         "build": "tsup ./index.ts --format cjs --dts",
+        "release": "pnpm run build && changeset publish",
+        "lint": "tsc",
         "start1": "pnpm add -D typescript",
         "start2": "pnpm tsc --init",
         "start3": "pnpm add -D tsup",
