@@ -1,0 +1,11 @@
+{
+    "name": "@zspk/types",
+    "version": "0.0.2",
+    "types": "./index.d.ts",
+    "owners": [
+        {
+            "name": "Афанасьев Алексей Васильевич",
+            "githubUsername": "Ryuzaki13"
+        }
+    ]
+}
