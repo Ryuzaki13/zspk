@@ -12,11 +12,11 @@ jobs:
         uses: actions/checkout@v3
 
       # Setup Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          registry-url: https://registry.npmjs.org/
-          node-version: "16.x"
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     registry-url: https://registry.npmjs.org/
+      #     node-version: "16.x"
 
       # Install dependencies (required by Run tests step)
       #- name: Install dependencies
@@ -27,38 +27,38 @@ jobs:
       #  run: npm test
 
       # Configure Git
-      - name: Git configuration
-        run: |
-          git config --global user.email "ryuzaki_dk_rm_guitar@mail.ru"
-          git config --global user.name "Ryuzaki13"
+      # - name: Git configuration
+      #   run: |
+      #     git config --global user.email "ryuzaki_dk_rm_guitar@mail.ru"
+      #     git config --global user.name "Ryuzaki13"
 
       # Bump package version
       # Use tag latest
-      - name: Bump release version
-        run: |
-          echo "NEW_VERSION=$(npm --no-git-tag-version version patch)" >> $GITHUB_ENV
-          echo "RELEASE_TAG=latest" >> $GITHUB_ENV
+      # - name: Bump release version
+      #   run: |
+      #     echo "NEW_VERSION=$(npm --no-git-tag-version version patch)" >> $GITHUB_ENV
+      #     echo "RELEASE_TAG=latest" >> $GITHUB_ENV
 
-      - name: Update package.json
-        run: |
-          echo "{\"name\": \"@zspk/types\",\"version\": \"${{ env.NEW_VERSION }}\",\"types\": \"./index.d.ts\"}" > package.json
+      # - name: Update package.json
+      #   run: |
+      #     echo "{\"name\": \"@zspk/types\",\"version\": \"${{ env.NEW_VERSION }}\",\"types\": \"./index.d.ts\"}" > package.json
 
       # Commit changes
-      - name: Commit package.json changes and create tag
-        run: |
-          git add "package.json"
-          git commit -m "chore: release ${{ env.NEW_VERSION }}"
-          git tag ${{ env.NEW_VERSION }}
+      # - name: Commit package.json changes and create tag
+      #   run: |
+      #     git add "package.json"
+      #     git commit -m "chore: release ${{ env.NEW_VERSION }}"
+      #     git tag ${{ env.NEW_VERSION }}
 
       # Publish version to public repository
-      - name: Publish
-        run: npm publish --verbose --access public --tag ${{ env.RELEASE_TAG }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish
+      #   run: npm publish --verbose --access public --tag ${{ env.RELEASE_TAG }}
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Push repository changes
-      - name: Push changes to repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin && git push --tags
+      # - name: Push changes to repository
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     git push origin && git push --tags
