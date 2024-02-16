@@ -41,7 +41,7 @@ jobs:
 
       - name: Update package.json
         run: |
-          echo "{\"name\": \"@zspk/types\",\"version\": \"${{ env.NEW_VERSION }}\",\"types\": \"./index.d.ts\"}" >> package.json
+          echo "{\"name\": \"@zspk/types\",\"version\": \"${{ env.NEW_VERSION }}\",\"types\": \"./index.d.ts\"}" > package.json
 
       # Commit changes
       - name: Commit package.json changes and create tag
