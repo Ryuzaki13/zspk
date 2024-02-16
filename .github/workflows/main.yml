@@ -1,21 +1,20 @@
 name: CI
 on:
   push:
-    branches:
-      - "**"
+    branches: master
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          version: 7
-      - uses: actions/setup-node@v3
+          node-version: "16.x"
+          cache: "npm"
+      - run: npm ci
+      - run: npm test
+      - run: npm version patch
+      - uses: JS-DevTools/npm-publish@v3
         with:
-          node-version: 16.x
-          cache: "pnpm"
-
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run lint && pnpm run build
+          token: ${{ secrets.NPM_TOKEN }}
